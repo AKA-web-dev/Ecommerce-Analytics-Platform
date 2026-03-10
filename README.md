@@ -58,31 +58,8 @@ __________________________________________________________
   <img src="architecture/Architecture_flow.png" alt="Architecture" width="700">
 </p>
 
-## 📂 Repository Structure
-ecommerce-analytics-platform/
-│
-├── architecture/
-│   └── architecture_flow.png
-├── airflow/
-│   └── dags/
-│       └── ecommerce_pipeline_dag.py
-├── spark/
-│   ├── bronze_ingestion.py
-│   ├── silver_transformations.py
-├── dbt/
-│   ├── models/
-│   │   ├── staging/
-│   │   ├── marts/
-│   │   │   ├── dim_customers.sql
-│   │   │   ├── dim_products.sql
-│   │   │   ├── fact_orders.sql
-├── screenshots/
-│   ├── airflow_dag.png
-│   ├── dbt_lineage.png
-├── environment.yml
-├── requirements.txt
-├── README.md
-└── .gitignore
+## 📂 Repository Structure (soon)
+
 
 ## ✅ Data Quality
 
