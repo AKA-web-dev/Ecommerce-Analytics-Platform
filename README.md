@@ -1,7 +1,7 @@
 # 🛒 E-commerce Analytics Platform
 
-This project implements an end-to-end ELT-focused data warehouse for e-commerce analytics.
-Raw transactional data is ingested, cleaned using Spark, modeled with dbt, and stored in BigQuery to support business KPIs and dashboards.
+This project implements a production-style end-to-end ELT pipeline for e-commerce analytics.
+Raw transactional data is ingested, transformed with Spark, modeled with dbt, and orchestrated with Airflow to produce analytics-ready star-schema tables in BigQuery.
 
 ## 🎯 Objectives
 
@@ -9,6 +9,7 @@ Raw transactional data is ingested, cleaned using Spark, modeled with dbt, and s
 - Apply dimensional modeling (Star Schema)
 - Implement incremental data processing
 - Enable analytics-ready KPIs
+- Orchestrate end-to-end workflow using Apache Airflow
 
 ## ⚙️ Tech Stack
 __________________________________________________________
@@ -24,9 +25,9 @@ __________________________________________________________
 |_________________|_______________________________________|
 
 ## 🧱 Data Layers
-- **Bronze**: Raw data ingested from source systems (CSV)
-- **Silver**: Cleaned and standardized datasets using Spark
-- **Gold**: Analytics-ready star schema models built with dbt
+- **Bronze**: Raw CSV files ingested from source systems, append-only
+- **Silver**: Cleaned, deduplicated, and normalized data via PySpark, stored as Parquet
+- **Gold**: Cleaned, deduplicated, and normalized data via PySpark, stored as Parquet
 
 ## 🏗 Architecture
 
@@ -58,19 +59,42 @@ __________________________________________________________
 </p>
 
 ## 📂 Repository Structure
-See folder structure for modular pipeline organization:
-- `spark/` → Silver transformations
-- `dbt/` → Gold models and analytics marts
-- `data/` → Documentation only
+ecommerce-analytics-platform/
+│
+├── architecture/
+│   └── architecture_flow.png
+├── airflow/
+│   └── dags/
+│       └── ecommerce_pipeline_dag.py
+├── spark/
+│   ├── bronze_ingestion.py
+│   ├── silver_transformations.py
+├── dbt/
+│   ├── models/
+│   │   ├── staging/
+│   │   ├── marts/
+│   │   │   ├── dim_customers.sql
+│   │   │   ├── dim_products.sql
+│   │   │   ├── fact_orders.sql
+├── screenshots/
+│   ├── airflow_dag.png
+│   ├── dbt_lineage.png
+├── environment.yml
+├── requirements.txt
+├── README.md
+└── .gitignore
 
 ## ✅ Data Quality
 
     - dbt tests (not null, uniqueness)
-    - Revenue reconciliation
+    - Revenue and KPI reconciliation
     - Referential integrity checks
+    - Incremental model validation
 
 ## 🚫 Data Policy
-This repository does not contain raw data files. Only schemas, transformations, and documentation are included.
+This repository does not include raw data. Only sample CSV, schemas, transformations, and documentation are included.
+
+Large datasets should be sourced from your internal storage or GCS bucket.
 
 ## 🚀 How to Run
 
@@ -79,3 +103,7 @@ This repository does not contain raw data files. Only schemas, transformations, 
     # Run dbt models
         dbt run
         dbt test
+    $ Run airflow
+        airflow db init
+        airflow scheduler
+        airflow webserver
