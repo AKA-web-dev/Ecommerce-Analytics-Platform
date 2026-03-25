@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: fact_orders
+    tests:
+      - not_null:
+          column_name: order_id
+      - not_null:
+          column_name: customer_sk
+
+  - name: dim_customers
+    tests:
+      - unique:
+          column_name: customer_id
+
+  - name: fact_order_payments
+    description: "Order-level payment fact table (1 row per order)"
+    columns:
+      - name: order_id
+        description: "Unique order identifier"
+        tests:
+          - not_null
+          - unique
+
+      - name: payment_total
+        description: "Total amount paid for the order"
+        tests:
+          - not_null
