@@ -55,7 +55,7 @@ __________________________________________________________
         - Product & Category Performance
 
 <p align="center">
-  <img src="architecture/Architecture_flow.png" alt="Architecture" width="700">
+  <img src="Architecture/Architecture_flow.png" alt="Architecture" width="700">
 </p>
 
 ## 📂 Repository Structure (soon)
