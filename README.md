@@ -80,7 +80,7 @@ Large datasets should be sourced from your internal storage or GCS bucket.
     # Run dbt models
         dbt run
         dbt test
-    $ Run airflow
+    # Run airflow
         airflow db init
         airflow scheduler
         airflow webserver
