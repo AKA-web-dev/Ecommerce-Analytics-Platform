@@ -86,6 +86,6 @@ Large datasets should be sourced from your internal storage or GCS bucket.
         airflow webserver
 ## Power BI Dashboard - Sales Overview
 ![Sales Overview](dashboards/PowerBi/Sale_Overview.png)
--KPIs: Total Revenue , Total Orders , Average Order Value
--Time-based analysis
-- Customer segmentation insights
+        - KPIs: Total Revenue , Total Orders , Average Order Value
+        - Time-based analysis
+        - Customer segmentation insights
